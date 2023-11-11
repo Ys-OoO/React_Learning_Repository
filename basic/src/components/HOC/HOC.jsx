@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 */
 
 /*
-  拥有红色Title，以及loading状态, 并且传递onLoading事件
+  拥有红色Title，以及loading状态, 并且传递onLoading事件以及状态
 */
 export default function hoc(InnerComponent,delay,title) {
   return function(props) {
