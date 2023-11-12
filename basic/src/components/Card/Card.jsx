@@ -5,7 +5,7 @@ import hoc from '../HOC/HOC';
 
 
  function Card(props) {
-  const {onLoading} = props;
+  const {onLoading,title} = props;
 
   useEffect(()=>{
     if(onLoading){
@@ -18,7 +18,7 @@ import hoc from '../HOC/HOC';
 
   return (
     <div style={{width:200,height:200,backgroundColor:'#fff'}} {...props}>
-      {props.children}
+      {title}
     </div>
   )
 }
