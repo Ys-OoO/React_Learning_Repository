@@ -1,8 +1,12 @@
+---
+highlight: a11y-dark
+---
+
 # Render Props
 
-首先需要明确，render props 并不是使用名为 render 的这个 props，他与 hoc 类似，都是借助 React 的特性而可以实现的一种模式，官网是这样解释 render props 的： ==任何被用于告知组件需要渲染什么内容的 prop 函数，在技术上都可以被称为 render prop==(为此后续 demo 我们不使用 render)；
+首先需要明确，render props 并不是使用名为 render 的这个 props，他与 hoc 类似，都是借助 React 的特性而可以实现的一种模式，官网是这样解释 render props 的： **任何被用于告知组件需要渲染什么内容的函数 prop ，在技术上都可以被称为 render prop**(为此后续 demo 我们不使用 render)；
 
-划重点：告知组件渲染什么内容的 prop 函数————> 那么这个东西就是一个函数，又是一个 props。你是否又想到什么？父子组件通信时，我们就是使用 props 完成的，那有什么不同呢？没错，**告知组件需要渲染什么内容**
+划重点：告知组件渲染什么内容的函数 prop ————> 那么这个东西就是一个函数，又是一个 props。你是否又想到什么？父子组件通信时，我们就是使用 props 完成的，那有什么不同呢？没错，**告知组件需要渲染什么内容。**
 
 ## 实操
 
@@ -10,7 +14,9 @@
 
 ### 练手
 
-接下来，我们先根据官网的例子写一个:封装一个组件，它能够监听并显示当前鼠标在该组件的坐标；并且能够渲染一个我们需要的组件来实时跟踪； ![Alt text](image.png)
+接下来，我们先根据官网的例子写一个:封装一个组件，它能够监听并显示当前鼠标在该组件的坐标；并且能够渲染一个我们需要的组件来实时跟踪；
+
+![image.png](./image.png)
 
 #### 第一步
 
@@ -38,6 +44,8 @@ export default function MouseTracker({ ...props }) {
 }
 ```
 
+#### 第二步
+
 此时我们已经可以获取鼠标位置了，接下来要让一个红点跟随鼠标。普通代码中，我们可以大致这样写：
 
 ```js
@@ -62,7 +70,7 @@ export default function MouseTracker({ ...props }) {
 }
 ```
 
-如果这样的话，我们只是在 MouseTracker 中追加了一个组件，并没有起到代码复用的效果，再想想那句话：==告知组件渲染什么内容的 prop 函数==。因此我们需要接收一个函数，该函数返回一个组件，至于返回的组件是什么那就是别人的事情了；
+如果这样的话，我们只是在 MouseTracker 中追加了一个组件，并没有起到代码复用的效果，再想想那句话：告知组件渲染什么内容的函数 prop 。因此我们需要接收一个函数，该函数返回一个组件，至于返回的组件是什么那就是别人的事情了；
 
 ```js
 export default function MouseTracker({ renderFunc, ...props }) {
@@ -88,7 +96,7 @@ export default function MouseTracker({ renderFunc, ...props }) {
 
 MouseTracker 接收了一个函数 renderFunc，这个函数不仅可以为外部返回内部的状态，并且要返回一个 DOM 用来渲染，这就是 render Prop。
 
-使用一下：
+#### 使用一下：
 
 ```js
 function App() {
@@ -115,11 +123,11 @@ function App() {
 }
 ```
 
-==此外，上述功能你同样可以使用 HOC 来完成，并且 HOC 中也可以使用 render Props，可以自行尝试或到我的 github 中查看 👆==
+**此外，上述功能你同样可以使用 HOC 来完成，并且 HOC 中也可以使用 render Props，可以自行尝试或到我的 github 中查看 👆**
 
-### 需求
+### 使用场景
 
-在日常开发中，对以一个中后台项目，会涉及大量的 Modal，Drawer 等的打开关闭，实际上我们只在意当我点击 Modal 中的完成按钮后所执行的逻辑，其他什么打开关闭都不是我们关心的东西，此时就可以使用 Render Props 来对 Modal 封装了。大家可以先自己谢谢，下面是我的 Demo：以 Antd 的 Modal 为例
+在日常开发中，对于一个中后台项目，会涉及大量的 Modal，Drawer 等的打开关闭，实际上我们只在意当我点击 Modal 中的完成按钮后所执行的逻辑，其他什么打开关闭都不是我们关心的东西，此时就可以使用 Render Props 来对 Modal 封装了。大家可以先自己谢谢，下面是我的 Demo：以 Antd 的 Modal 为例
 
 ```js
 export default function EasyModal({ buttonRender, beforeOk, ...props }) {
