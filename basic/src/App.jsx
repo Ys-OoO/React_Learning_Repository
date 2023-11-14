@@ -1,5 +1,8 @@
-import { Button } from 'antd';
-import { useState } from 'react';
+import { Button, Form } from 'antd';
+import { useEffect, useRef, useState } from 'react';
+import ColorSelect from './components/Control/ColorSelect';
+import ControlledSelect from './components/Control/ControlledSelect';
+import UncontrolledSelect from './components/Control/UncontrolledSelect';
 import AuthButton from './components/HOC/Demo_1/withAuth';
 import StyleAndLoadingModal from './components/HOC/Demo_1/withStyleAndLoading';
 import EasyModal from './components/RenderProps/Demo/EasyModal';
@@ -37,6 +40,18 @@ function App() {
       </Button>
     );
   };
+
+  const selectRef = useRef(null);
+  const consoleSelect = () => {
+    console.log(selectRef.current.value);
+  };
+
+  const [form] = Form.useForm();
+  useEffect(() => {
+    form.setFieldValue('color', 'red');
+    form.setFieldValue('num', '3');
+  });
+  const [num, setNum] = useState();
   return (
     <>
       <AuthButton onClick={openModal}>open</AuthButton>
@@ -58,6 +73,41 @@ function App() {
       >
         234
       </EasyModal>
+      <UncontrolledSelect ref={selectRef} />
+      <Button onClick={consoleSelect}>获取select</Button>
+      <ControlledSelect
+        value={num}
+        onChange={(v) => {
+          setNum(v);
+        }}
+      />
+      <button
+        onClick={() => {
+          setNum(3);
+        }}
+      >
+        设置num为3
+      </button>
+      <Form form={form}>
+        <Form.Item name="color">
+          <ColorSelect />
+        </Form.Item>
+      </Form>
+      <button
+        onClick={() => {
+          form?.setFieldValue('color', 'green');
+          form?.setFieldValue('num', '1');
+        }}
+      >
+        设置color为绿色
+      </button>
+      <button
+        onClick={() => {
+          console.log(form.getFieldsValue());
+        }}
+      >
+        打印form信息
+      </button>
     </>
   );
 }
