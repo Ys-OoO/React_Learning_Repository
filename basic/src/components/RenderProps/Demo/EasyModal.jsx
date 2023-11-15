@@ -12,7 +12,7 @@ export default function EasyModal({ buttonRender, beforeOk, ...props }) {
   return (
     <Fragment>
       {buttonRender && buttonRender(setOpen)}
-      {buttonRender || (
+      {buttonRender === undefined ? (
         <Button
           onClick={() => {
             setOpen(true);
@@ -20,7 +20,7 @@ export default function EasyModal({ buttonRender, beforeOk, ...props }) {
         >
           openModal
         </Button>
-      )}
+      ) : undefined}
       <Modal
         open={open}
         onCancel={() => {
