@@ -1,0 +1,6 @@
+.box{
+  width: 200px;
+  height: 200px;
+  background-color: var(--theme-backgroundColor);
+  color: var(--theme-color);
+}

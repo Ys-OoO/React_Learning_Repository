@@ -1,21 +1,22 @@
-import { Button } from 'antd';
-import { useState } from 'react';
-import Demo from './components/Context/Demo';
-import ThemeContext from './components/Context/ThemeContext';
+import Demo from './components/Theme/CssVar/Demo';
 
 function App() {
-  const [theme, setTheme] = useState('light');
   return (
-    <ThemeContext.Provider value={theme}>
+    <>
       <Demo />
-      <Button
+      <button
         onClick={() => {
-          setTheme(theme === 'light' ? 'dark' : 'light');
+          const classList = document.documentElement.classList;
+          if (classList.value) {
+            document.documentElement.classList.remove('dark');
+            return;
+          }
+          document.documentElement.classList.add('dark');
         }}
       >
         主题切换
-      </Button>
-    </ThemeContext.Provider>
+      </button>
+    </>
   );
 }
 
