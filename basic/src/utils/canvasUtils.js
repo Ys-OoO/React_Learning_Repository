@@ -74,11 +74,8 @@ export const crop = (canvas, initialPosition, { reverse = false }) => {
       let radius;
       if (reverse) {
         radius = easeInOutQuint(progress, maxRadius, -maxRadius, duration);
-        console.log('destination-in', radius);
       } else {
         radius = easeInOutQuart(progress, 0, maxRadius, duration);
-        console.log(radius);
-
       }
 
       ctx.beginPath();
