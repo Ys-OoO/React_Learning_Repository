@@ -10,7 +10,7 @@ function useInfiniteScroll(fetchFunc) {
 
   const loadMore = useCallback(debounce(async () => {
     setLoading(true);
-    const [newData, more] = await fetchFunc?.();
+    const { data: newData, more } = await fetchFunc?.();
     setHasMore(more);
     setData((prevData) => [...prevData, ...newData]);
     setLoading(false);
@@ -44,7 +44,7 @@ function useInfiniteScroll(fetchFunc) {
         observer.unobserve(targetEle);
       }
     }
-  }, [loadMore, hasMore])
+  }, [hasMore])
 
 
 
@@ -52,6 +52,7 @@ function useInfiniteScroll(fetchFunc) {
     data,
     hasMore,
     loading,
+    loadingRef,
     Loading: hasMore ? <div ref={loadingRef}>Loading...</div> : <div ref={loadingRef}>无更多数据</div>,
   }
 }

@@ -1,4 +1,5 @@
 import { useContext, useRef, useState } from 'react';
+import Counter from './components/Counter/Counter';
 import ThemeContext from './components/Theme/ThemeContext/ThemeContext';
 import { crop, toCanvas } from './utils/canvasUtils';
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <button onClick={toggleTheme}>👻点赞+收藏👻</button>
         </div>
       </div>
+      <Counter />
     </ThemeContext.Provider>
   );
 }
