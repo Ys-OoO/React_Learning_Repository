@@ -1,4 +1,6 @@
+import { Button, Form } from 'antd';
 import { useContext, useRef, useState } from 'react';
+import ColorSelect from './components/Control/ColorSelect';
 import Counter from './components/Counter/Counter';
 import ThemeContext from './components/Theme/ThemeContext/ThemeContext';
 import { crop, toCanvas } from './utils/canvasUtils';
@@ -22,6 +24,12 @@ function App() {
     });
   };
 
+  const onFinish = (values) => {
+    console.log(values);
+  };
+  const onValuesChange = (a, b, c) => {
+    console.log(a, b, c);
+  };
   return (
     <ThemeContext.Provider value={theme}>
       <div ref={parentRef}>
@@ -30,6 +38,17 @@ function App() {
         </div>
       </div>
       <Counter />
+
+      <Form onFinish={onFinish} onValuesChange={onValuesChange}>
+        <Form.Item name="sele" initialValue={'green'}>
+          <ColorSelect></ColorSelect>
+        </Form.Item>
+        <Form.Item>
+          <Button htmlType="submit" type="primary">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
     </ThemeContext.Provider>
   );
 }
