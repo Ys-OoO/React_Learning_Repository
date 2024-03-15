@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="expire">expire Btn</button>
+  <button id="last-modified">last modified Btn</button>
+  <button id="cache-control">cache control Btn</button>
+  <button id="etag">etag Btn</button>
+  <button id="cache-control-expire">cache control expire Btn</button>
+
+  <div style="height: 20px;"></div>
+</body>
+<script lang="text/javascript">
+  const expireBtn = document.getElementById("expire");
+  expireBtn.addEventListener("click", () => {
+    fetch("http:127.0.0.1:9001", {
+      method: 'GET',
+      mode: "same-origin"
+    }).then((response) => { console.log(response) })
+    // var xhr = new XMLHttpRequest();
+
+    // xhr.open('GET', 'http://127.0.0.1:9001', true);
+
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === XMLHttpRequest.DONE) {
+    //     // 如果响应状态码是成功的（200）
+    //     if (xhr.status === 200) {
+    //       console.log(200)
+    //     } else {
+    //       console.error('请求失败：', xhr.status);
+    //     }
+    //   }
+    // };
+
+    // // 发送请求
+    // xhr.send();
+  })
+
+  const lastModified = document.getElementById("last-modified");
+  lastModified.addEventListener("click", () => {
+    fetch("http:127.0.0.1:9001", {
+      method: 'GET',
+      mode: "cors",
+    }).then((response) => { console.log(response) })
+  })
+
+  const etag = document.getElementById("etag");
+  etag.addEventListener("click", () => {
+    fetch("http:127.0.0.1:9001", {
+      method: 'POST',
+      mode: "cors",
+      body: JSON.stringify({ name: 'ys' }),
+    }).then((response) => { console.log(response) })
+  })
+
+</script>
+
+</html>

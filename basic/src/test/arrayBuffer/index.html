@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a download="hello.txt" href='#' id="link">Download</a>
+  <input type="file" name="file" id="file">
+  <script>
+    let blob = new Blob(["Hello, world!"], { type: 'text/plain' });
+
+    link.href = URL.createObjectURL(blob);
+  </script>
+  <script>
+    const arrayBuffer = new ArrayBuffer(3, { maxByteLength: 4 }); //这是一个可变长度的二进制视图，占据4个字节大小
+    console.log(arrayBuffer.byteLength, arrayBuffer.resizable, arrayBuffer.maxByteLength) //长度 2 ，长度是否可变 true，最大可变长度 4
+
+    // arrayBuffer.resize(5); //报错，只能调整到 maxByteLength
+    // console.log(arrayBuffer)
+    // const chunk = arrayBuffer.slice(0, 1); //[start,end) 类似于数组的slice方法，返回一个新的ArrayBuffer
+
+    const view = new DataView(arrayBuffer, 0, 3);
+    console.log(view)
+
+    const file = document.getElementById('file');
+    file.addEventListener('change', () => {
+      console.log(file.files)
+      const reader = new FileReader();
+      reader.readAsText(file.files[0]);
+
+      reader.onload = () => {
+        console.log(reader.result)
+      }
+    })
+
+  </script>
+</body>
+
+</html>

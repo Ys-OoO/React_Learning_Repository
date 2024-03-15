@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    window.onstorage = function (e) {
+      console.log(`The${e.key} key has been changed from ${e.oldValue} to ${e.newValue}.`);
+    };
+
+    window.addEventListener("message", (e) => {
+      if (e.data.hello) return;
+      console.log(e.origin); //源信息
+      console.log(e.data); //数据
+      console.log(e.source); //源窗口引用
+
+      //响应数据
+      e.source.postMessage(`pageB get the ${e.data}`, "http:127.0.1.1:5500")
+    })
+  </script>
+</body>
+
+</html>

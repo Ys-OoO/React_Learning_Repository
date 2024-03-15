@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <button id=" btn">getData</button>
+  <button id="setcookie">set Cookie</button>
+  <script>
+    const btn = document.getElementById('btn');
+    const setco = document.getElementById('setcookie');
+
+    btn.addEventListener('click', async () => {
+      // 创建 XMLHttpRequest 对象
+      var xhr = new XMLHttpRequest();
+
+      // 配置请求，设置为异步请求
+      xhr.open('GET', 'http://127.0.0.1:9001', true);
+
+      // 注册事件处理程序，处理响应
+      xhr.onreadystatechange = function () {
+        // 当请求完成并且响应就绪时
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          // 如果响应状态码是成功的（200）
+          if (xhr.status === 200) {
+            // 获取响应头中的 Content-Length 字段
+            var apikey = xhr.getResponseHeader('api-key');
+            console.log('api-key:', apikey);
+          } else {
+            console.error('请求失败：', xhr.status);
+          }
+        }
+      };
+
+      // 发送请求
+      xhr.send();
+    })
+
+    setco.addEventListener('click', async () => {
+      // 创建 XMLHttpRequest 对象
+      var xhr = new XMLHttpRequest();
+
+      // 配置请求，设置为异步请求
+      xhr.open('GET', 'http://127.0.0.1:9001', true);
+
+      // 注册事件处理程序，处理响应
+      xhr.onreadystatechange = function () {
+        // 当请求完成并且响应就绪时
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          // 如果响应状态码是成功的（200）
+          if (xhr.status === 200) {
+            // 获取响应头中的 Content-Length 字段
+            var apikey = xhr.getResponseHeader('api-key');
+            console.log('api-key:', apikey);
+          } else {
+            console.error('请求失败：', xhr.status);
+          }
+        }
+      };
+
+      // 发送请求
+      xhr.send();
+    })
+  </script>
+</body>
+
+</html>

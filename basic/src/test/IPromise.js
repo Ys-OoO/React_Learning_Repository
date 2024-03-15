@@ -153,18 +153,18 @@ class MyPromise2 {
 }
 
 
-// const ipromise = new MyPromise2((resolve, reject) => {
-//   console.log("同步逻辑.... ---1");
-//   setTimeout(() => {
-//     console.log("异步函数执行 ---2");
-//     resolve("异步处理完成");
-//   }, 2000)
-// }).then((res) => {
-//   console.log("then调用 处理异步结果 ---3 " + res);
-//   setTimeout(() => {
-//     console.log("异步函数执行 ---4");
-//   }, 2000)
-//   return "then 结束";
-// }).then((res) => {
-//   console.log("最后一个then ---5", res);
-// })
+const ipromise = new MyPromise2((resolve, reject) => {
+  console.log("同步逻辑.... ---1");
+  setTimeout(() => {
+    console.log("异步函数执行 ---2");
+    resolve("异步处理完成");
+  }, 2000)
+}).then((res) => {
+  console.log("then调用 处理异步结果 ---3 " + res);
+  setTimeout(() => {
+    console.log("异步函数执行 ---4");
+  }, 2000)
+  return "then 结束";
+}).then((res) => {
+  console.log("最后一个then ---5", res);
+})

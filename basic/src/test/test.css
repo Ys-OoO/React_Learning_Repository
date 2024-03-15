@@ -1,0 +1,17 @@
+div{
+  margin-right:10px;
+  animation: 3s infinite alternate divani;
+}
+/* div:hover{
+  color: red;
+  opacity: 0.4;
+  transition: opacity 1s;
+} */
+
+@keyframes divani {
+  from{
+    opacity: 1;
+  }to{
+    opacity: 0.5;
+  }
+}

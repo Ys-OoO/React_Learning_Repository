@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="file" id="image" accept=".gif" multiple>
+  <div id="container"></div>
+  <script>
+    const images = document.getElementById('image');
+
+    const container = document.getElementById('container');
+
+    images.addEventListener('change', () => {
+      const fileList = images.files;
+
+      for (let i = 0; i < fileList.length; i++) {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileList[i]);
+        reader.onload = () => {
+          const image = document.createElement('img');
+          image.src = reader.result;
+          container.appendChild(image);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

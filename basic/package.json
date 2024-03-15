@@ -7,11 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cookieServer": "live-server --open=./src/test/cookie/index1.html --port=5500 --proxy=/proxy:http:127.0.0.1:9001"
   },
   "dependencies": {
     "antd": "^5.11.1",
+    "axios": "^1.6.7",
     "dom-to-image": "^2.6.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

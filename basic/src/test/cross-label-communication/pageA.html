@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <button id="btn">触发 LocalStorage 更新</button>
+  <button id="open">open new Tab</button>
+  <button id="post">post message</button>
+
+  <script>
+    window.onstorage = function (e) {
+      console.log(`The ${e.key} key has been changed from ${e.oldValue} to ${e.newValue}.`);
+    };
+
+    document.getElementById('btn').onclick = function () {
+      localStorage.setItem('storage1', Date.now())
+    }
+
+
+
+    let otherWindow; //新标签页窗口
+    //打开新标签页
+    document.getElementById('open').onclick = function () {
+      otherWindow = window.open('./pageB.html');
+    }
+    //向pageB发送消息
+    document.getElementById('post').onclick = function () {
+      otherWindow.postMessage("Page A message", "http:127.0.1.1:5500")
+    }
+
+    //接收pageB的消息
+    window.addEventListener("message", (e) => {
+      if (e.data.hello) return;
+      console.log(e.origin); //源信息
+      console.log(e.data); //数据
+      console.log(e.source); //源窗口引用
+    })
+
+  </script>
+</body>
+
+</html>

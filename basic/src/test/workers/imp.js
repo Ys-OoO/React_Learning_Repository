@@ -1,0 +1,1 @@
+console.log(self.origin, 1)
